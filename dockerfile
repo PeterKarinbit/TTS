@@ -29,11 +29,11 @@ EXPOSE 5002
 # Environment variable for port
 ENV PORT=5002
 
-# Create startup script that runs the SERVER, not the CLI
+# Create startup script with CORRECT TTS server command
 RUN echo '#!/bin/bash\n\
-echo "Starting TTS Server on port $PORT..."\n\
-echo "Using model: ${TTS_MODEL:-tts_models/en/ljspeech/tacotron2-DDC}"\n\
-cd /app\n\
+echo "Starting TTS Server..."\n\
+echo "Port: $PORT"\n\
+echo "Model: ${TTS_MODEL:-tts_models/en/ljspeech/tacotron2-DDC}"\n\
 python3 TTS/server/server.py \
   --model_name "${TTS_MODEL:-tts_models/en/ljspeech/tacotron2-DDC}" \
   --port $PORT \
